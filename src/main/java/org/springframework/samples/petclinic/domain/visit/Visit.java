@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.domain.model;
+package org.springframework.samples.petclinic.domain.visit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +25,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.domain.model.Pet;
 import org.springframework.samples.petclinic.infrastructure.model.BaseEntity;
 
 /**

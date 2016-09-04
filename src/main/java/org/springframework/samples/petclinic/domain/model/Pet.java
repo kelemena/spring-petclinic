@@ -35,6 +35,7 @@ import org.joda.time.LocalDate;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.domain.visit.Visit;
 import org.springframework.samples.petclinic.infrastructure.model.BaseEntity;
 
 /**

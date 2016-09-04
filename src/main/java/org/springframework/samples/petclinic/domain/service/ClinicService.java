@@ -18,11 +18,13 @@ package org.springframework.samples.petclinic.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.domain.model.*;
+import org.springframework.samples.petclinic.domain.model.Owner;
+import org.springframework.samples.petclinic.domain.model.Pet;
+import org.springframework.samples.petclinic.domain.model.PetType;
+import org.springframework.samples.petclinic.domain.model.Vet;
 import org.springframework.samples.petclinic.domain.repository.OwnerRepository;
 import org.springframework.samples.petclinic.domain.repository.PetRepository;
 import org.springframework.samples.petclinic.domain.repository.VetRepository;
-import org.springframework.samples.petclinic.domain.repository.VisitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,14 +36,12 @@ public class ClinicService {
     private PetRepository petRepository;
     private VetRepository vetRepository;
     private OwnerRepository ownerRepository;
-    private VisitRepository visitRepository;
 
     @Autowired
-    public ClinicService(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
+    public ClinicService(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository) {
         this.petRepository = petRepository;
         this.vetRepository = vetRepository;
         this.ownerRepository = ownerRepository;
-        this.visitRepository = visitRepository;
     }
 
     @Transactional(readOnly = true)
@@ -65,12 +65,6 @@ public class ClinicService {
     }
 
 
-    @Transactional
-    public void saveVisit(Visit visit) throws DataAccessException {
-        visitRepository.save(visit);
-    }
-
-
     @Transactional(readOnly = true)
     public Pet findPetById(int id) throws DataAccessException {
         return petRepository.findById(id);
@@ -85,10 +79,6 @@ public class ClinicService {
     @Cacheable(value = "vets")
     public Collection<Vet> findVets() throws DataAccessException {
         return vetRepository.findAll();
-    }
-
-    public Collection<Visit> findVisitsByPetId(int petId) {
-        return visitRepository.findByPetId(petId);
     }
 
 }

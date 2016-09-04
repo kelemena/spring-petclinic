@@ -19,8 +19,11 @@ import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.domain.model.Owner;
+import org.springframework.samples.petclinic.domain.model.Pet;
+import org.springframework.samples.petclinic.domain.model.PetType;
+import org.springframework.samples.petclinic.domain.model.Vet;
 import org.springframework.samples.petclinic.infrastructure.config.BusinessConfig;
-import org.springframework.samples.petclinic.domain.model.*;
 import org.springframework.samples.petclinic.infrastructure.util.EntityUtils;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -154,32 +157,5 @@ public class ClinicServiceTests {
         assertThat(vet.getSpecialties().get(0).getName()).isEqualTo("dentistry");
         assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("surgery");
     }
-
-    @Test
-    @Transactional
-    public void shouldAddNewVisitForPet() {
-        Pet pet7 = this.clinicService.findPetById(7);
-        int found = pet7.getVisits().size();
-        Visit visit = new Visit();
-        pet7.addVisit(visit);
-        visit.setDescription("test");
-        this.clinicService.saveVisit(visit);
-        this.clinicService.savePet(pet7);
-
-        pet7 = this.clinicService.findPetById(7);
-        assertThat(pet7.getVisits().size()).isEqualTo(found + 1);
-        assertThat(visit.getId()).isNotNull();
-    }
-
-    @Test
-       public void shouldFindVisitsByPetId() throws Exception {
-        Collection<Visit> visits = this.clinicService.findVisitsByPetId(7);
-        assertThat(visits.size()).isEqualTo(2);
-        Visit[] visitArr = visits.toArray(new Visit[visits.size()]);
-        assertThat(visitArr[0].getPet()).isNotNull();
-        assertThat(visitArr[0].getDate()).isNotNull();
-        assertThat(visitArr[0].getPet().getId()).isEqualTo(7);
-    }
-
 
 }

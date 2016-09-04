@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.domain.visit.VisitService;
 import org.springframework.samples.petclinic.infrastructure.config.MvcCoreConfig;
 import org.springframework.samples.petclinic.infrastructure.config.MvcTestConfig;
 import org.springframework.samples.petclinic.domain.model.Pet;

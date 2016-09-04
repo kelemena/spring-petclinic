@@ -21,8 +21,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.domain.model.Pet;
-import org.springframework.samples.petclinic.domain.model.Visit;
+import org.springframework.samples.petclinic.domain.visit.Visit;
 import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.visit.VisitService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -42,11 +43,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class VisitController {
 
     private final ClinicService clinicService;
+    private final VisitService visitService;
 
 
     @Autowired
-    public VisitController(ClinicService clinicService) {
+    public VisitController(ClinicService clinicService, VisitService visitService) {
         this.clinicService = clinicService;
+        this.visitService = visitService;
     }
 
     @InitBinder
@@ -84,7 +87,7 @@ public class VisitController {
         if (result.hasErrors()) {
             return "pets/createOrUpdateVisitForm";
         } else {
-            this.clinicService.saveVisit(visit);
+            this.visitService.saveVisit(visit);
             return "redirect:/owners/{ownerId}";
         }
     }

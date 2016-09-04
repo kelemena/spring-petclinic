@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories("org.springframework.samples.petclinic.domain.repository")
+@EnableJpaRepositories("org.springframework.samples.petclinic.domain")
 public class SpringDataJpaConfig {
 
 }
