@@ -10,7 +10,7 @@ import javax.validation.Validator;
 
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.petclinic.domain.model.Vet;
+import org.springframework.samples.petclinic.domain.vet.Vet;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**

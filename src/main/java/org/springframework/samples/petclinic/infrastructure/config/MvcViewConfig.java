@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.samples.petclinic.domain.model.Vets;
+import org.springframework.samples.petclinic.boundary.web.VetController;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
@@ -89,7 +89,7 @@ public class MvcViewConfig {
 	@Description("Object-XML mapping declared using annotations inside 'Vets'")
 	public Marshaller marshaller() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(Vets.class);
+		marshaller.setClassesToBeBound(VetController.Vets.class);
 		return marshaller;
 	}
 

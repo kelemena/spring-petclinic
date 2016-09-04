@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.domain.repository;
+package org.springframework.samples.petclinic.domain.vet;
 
 import org.springframework.data.repository.Repository;
-import org.springframework.samples.petclinic.domain.model.Vet;
 
 import java.util.Collection;
 
-public interface VetRepository extends Repository<Vet, Integer> {
+interface VetRepository extends Repository<Vet, Integer> {
 
     Collection<Vet> findAll();
 }

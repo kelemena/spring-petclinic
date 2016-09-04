@@ -6,12 +6,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.samples.petclinic.infrastructure.config.BusinessConfig;
+import org.springframework.samples.petclinic.domain.vet.VetService;
 import org.springframework.samples.petclinic.infrastructure.config.MvcCoreConfig;
 import org.springframework.samples.petclinic.infrastructure.config.MvcTestConfig;
-import org.springframework.samples.petclinic.domain.model.Specialty;
-import org.springframework.samples.petclinic.domain.model.Vet;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.vet.Specialty;
+import org.springframework.samples.petclinic.domain.vet.Vet;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -37,7 +36,7 @@ public class VetControllerTests {
     private VetController vetController;
 
     @Autowired
-    private ClinicService clinicService;
+    private VetService vetService;
 
     private MockMvc mockMvc;
 
@@ -57,7 +56,7 @@ public class VetControllerTests {
         radiology.setId(1);
         radiology.setName("radiology");
         helen.addSpecialty(radiology);
-        given(this.clinicService.findVets()).willReturn(Lists.newArrayList(james, helen));
+        given(this.vetService.findVets()).willReturn(Lists.newArrayList(james, helen));
     }
 
     @Test
