@@ -18,43 +18,17 @@ package org.springframework.samples.petclinic.repository;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 
-/**
- * Repository class for <code>Pet</code> domain objects All method names are compliant with Spring Data naming
- * conventions so this interface can easily be extended for Spring Data See here: http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
- *
- * @author Ken Krebs
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Michael Isvy
- */
-public interface PetRepository {
+public interface PetRepository extends Repository<Pet, Integer> {
 
-    /**
-     * Retrieve all <code>PetType</code>s from the data store.
-     *
-     * @return a <code>Collection</code> of <code>PetType</code>s
-     */
+    @Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
     List<PetType> findPetTypes() throws DataAccessException;
 
-    /**
-     * Retrieve a <code>Pet</code> from the data store by id.
-     *
-     * @param id the id to search for
-     * @return the <code>Pet</code> if found
-     * @throws org.springframework.dao.DataRetrievalFailureException if not found
-     */
-    Pet findById(int id) throws DataAccessException;
+    Pet findById(int id);
 
-    /**
-     * Save a <code>Pet</code> to the data store, either inserting or updating it.
-     *
-     * @param pet the <code>Pet</code> to save
-     * @see BaseEntity#isNew
-     */
-    void save(Pet pet) throws DataAccessException;
-
+    void save(Pet pet);
 }

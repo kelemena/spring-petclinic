@@ -33,7 +33,6 @@ package org.springframework.samples.petclinic.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -43,8 +42,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // (in this case, JDBC-related settings for the JPA EntityManager definition below)
 @PropertySource("classpath:spring/data-access.properties")
 @EnableTransactionManagement
-@Import({DataSourceConfig.class, InitDataSourceConfig.class, JdbcConfig.class, SharedJpaConfig.class, JpaConfig.class, SpringDataJpaConfig.class})
+@Import({DataSourceConfig.class, InitDataSourceConfig.class, SharedJpaConfig.class, SpringDataJpaConfig.class})
 public class BusinessConfig {
-		
+
 
 }

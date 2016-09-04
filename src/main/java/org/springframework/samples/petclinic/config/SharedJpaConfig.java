@@ -46,15 +46,14 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@Profile({"jpa", "spring-data-jpa"})
 public class SharedJpaConfig {
-	
+
     @Autowired
     private Environment        env;
-    
+
 	@Autowired
 	private DataSource dataSource;
-	
+
     @Bean
     public EntityManagerFactory entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -66,7 +65,7 @@ public class SharedJpaConfig {
         em.afterPropertiesSet();
         return em.getObject();
     }
-    
+
     @Bean
     public JpaVendorAdapter jpaVendorAdaper() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -77,14 +76,14 @@ public class SharedJpaConfig {
         vendorAdapter.setShowSql(env.getProperty("jpa.showSql", Boolean.class));
         return vendorAdapter;
     }
-    
+
     @Bean(name="transactionManager")
     public JpaTransactionManager jpaTransactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactory());
         return jpaTransactionManager;
     }
-    
+
     @Bean
     public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
     	return new PersistenceExceptionTranslationPostProcessor();
