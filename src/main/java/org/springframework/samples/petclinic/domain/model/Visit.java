@@ -25,6 +25,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.infrastructure.model.BaseEntity;
 
 /**
  * Simple JavaBean domain object representing a visit.

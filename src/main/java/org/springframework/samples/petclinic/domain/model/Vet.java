@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlElement;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
+import org.springframework.samples.petclinic.infrastructure.model.BaseEntity;
 
 /**
  * Simple JavaBean domain object representing a veterinarian.

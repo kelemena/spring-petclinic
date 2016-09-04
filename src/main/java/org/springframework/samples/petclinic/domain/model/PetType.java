@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.domain.model;
 
+import org.springframework.samples.petclinic.infrastructure.model.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;

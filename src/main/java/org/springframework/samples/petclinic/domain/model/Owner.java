@@ -32,6 +32,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
+import org.springframework.samples.petclinic.infrastructure.model.BaseEntity;
 
 /**
  * Simple JavaBean domain object representing an owner.
