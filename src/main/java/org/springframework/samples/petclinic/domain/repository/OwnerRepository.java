@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.repository;
+package org.springframework.samples.petclinic.domain.repository;
 
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.domain.model.Owner;
 
 public interface OwnerRepository extends Repository<Owner, Integer> {
 

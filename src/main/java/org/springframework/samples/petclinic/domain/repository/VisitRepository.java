@@ -13,22 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.repository;
+package org.springframework.samples.petclinic.domain.repository;
+
+import org.springframework.data.repository.Repository;
+import org.springframework.samples.petclinic.domain.model.Visit;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.Repository;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
+public interface VisitRepository extends Repository<Visit, Integer> {
 
-public interface PetRepository extends Repository<Pet, Integer> {
+    void save(Visit visit);
 
-    @Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
-    List<PetType> findPetTypes() throws DataAccessException;
-
-    Pet findById(int id);
-
-    void save(Pet pet);
+    List<Visit> findByPetId(Integer petId);
 }

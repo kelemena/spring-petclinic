@@ -37,7 +37,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("org.springframework.samples.petclinic.service")
+@ComponentScan("org.springframework.samples.petclinic.domain.service")
 // Configurer that replaces ${...} placeholders with values from a properties file
 // (in this case, JDBC-related settings for the JPA EntityManager definition below)
 @PropertySource("classpath:spring/data-access.properties")

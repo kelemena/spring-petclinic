@@ -20,9 +20,9 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.Visit;
-import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.samples.petclinic.domain.model.Pet;
+import org.springframework.samples.petclinic.domain.model.Visit;
+import org.springframework.samples.petclinic.domain.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;

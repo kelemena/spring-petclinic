@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
-import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.samples.petclinic.domain.service.ClinicService;
 import org.springframework.samples.petclinic.web.PetTypeFormatter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -60,7 +60,7 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
  * the media type is 'text/html', it will delegate to the
  * InternalResourceViewResolver's JstlView, otherwise to the
  * BeanNameViewResolver.
- * 
+ *
  */
 @Configuration
 @EnableWebMvc
@@ -110,7 +110,7 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/webjars/**").addResourceLocations(
 				"classpath:/META-INF/resources/webjars/");
 	}
-	
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("welcome");
@@ -128,7 +128,7 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 	/**
 	 * Resolves specific types of exceptions to corresponding logical view names
 	 * for error views.
-	 * 
+	 *
 	 * <p>
 	 * View name resolved using bean of type InternalResourceViewResolver
 	 * (declared in {@link MvcViewConfig}).

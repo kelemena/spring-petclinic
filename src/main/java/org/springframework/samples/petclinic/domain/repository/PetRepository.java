@@ -13,31 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.domain.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.Repository;
+import org.springframework.samples.petclinic.domain.model.Pet;
+import org.springframework.samples.petclinic.domain.model.PetType;
 
-/**
- * Simple domain object representing a list of veterinarians. Mostly here to be used for the 'vets' {@link
- * org.springframework.web.servlet.view.xml.MarshallingView}.
- *
- * @author Arjen Poutsma
- */
-@XmlRootElement
-public class Vets {
+public interface PetRepository extends Repository<Pet, Integer> {
 
-    private List<Vet> vets;
+    @Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
+    List<PetType> findPetTypes() throws DataAccessException;
 
-    @XmlElement
-    public List<Vet> getVetList() {
-        if (vets == null) {
-            vets = new ArrayList<>();
-        }
-        return vets;
-    }
+    Pet findById(int id);
 
+    void save(Pet pet);
 }

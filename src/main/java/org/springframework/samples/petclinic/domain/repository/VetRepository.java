@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.repository;
+package org.springframework.samples.petclinic.domain.repository;
 
 import org.springframework.data.repository.Repository;
-import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.domain.model.Vet;
 
 import java.util.Collection;
 

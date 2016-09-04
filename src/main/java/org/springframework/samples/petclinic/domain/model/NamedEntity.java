@@ -13,35 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.domain.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+
 /**
- * Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.
+ * Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as a base class for objects
+ * needing these properties.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
 @MappedSuperclass
-public class BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+public class NamedEntity extends BaseEntity {
 
-    public Integer getId() {
-        return id;
+    @Column(name = "name")
+    private String name;
+
+    public String getName() {
+        return this.name;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isNew() {
-        return this.id == null;
+    @Override
+    public String toString() {
+        return this.getName();
     }
 
 }
