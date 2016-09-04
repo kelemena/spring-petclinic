@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.domain.model;
+package org.springframework.samples.petclinic.infrastructure.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,6 +10,7 @@ import javax.validation.Validator;
 
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.samples.petclinic.domain.model.Vet;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
