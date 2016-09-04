@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.config;
+package org.springframework.samples.petclinic.infrastructure.config;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;

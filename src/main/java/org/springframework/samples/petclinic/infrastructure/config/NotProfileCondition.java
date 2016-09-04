@@ -28,22 +28,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.config;
+package org.springframework.samples.petclinic.infrastructure.config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.context.annotation.Condition;
+import org.springframework.context.annotation.ConditionContext;
+import org.springframework.core.type.AnnotatedTypeMetadata;
+import org.springframework.util.MultiValueMap;
 
-@Configuration
-@ComponentScan("org.springframework.samples.petclinic.domain.service")
-// Configurer that replaces ${...} placeholders with values from a properties file
-// (in this case, JDBC-related settings for the JPA EntityManager definition below)
-@PropertySource("classpath:spring/data-access.properties")
-@EnableTransactionManagement
-@Import({DataSourceConfig.class, InitDataSourceConfig.class, SharedJpaConfig.class, SpringDataJpaConfig.class})
-public class BusinessConfig {
+/**
+ * {@link Condition} that matches based on the value of a {@link NotProfile @NotProfile}
+ * annotation.
+ *
+ */
+class NotProfileCondition implements Condition {
 
+	@Override
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		if (context.getEnvironment() != null) {
+			MultiValueMap<String, Object> attrs = metadata.getAllAnnotationAttributes(NotProfile.class.getName());
+			if (attrs != null) {
+				for (Object value : attrs.get("value")) {
+					if (context.getEnvironment().acceptsProfiles(((String[]) value))) {
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return true;
+	}
 
 }
+
