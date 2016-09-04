@@ -21,14 +21,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -42,8 +38,14 @@ import org.springframework.beans.support.PropertyComparator;
  */
 @Entity
 @Table(name = "vets")
-public class Vet extends Person {
+public class Vet extends BaseEntity {
 
+    @Column(name = "first_name")
+    @NotEmpty
+    protected String firstName;
+    @Column(name = "last_name")
+    @NotEmpty
+    protected String lastName;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"),
         inverseJoinColumns = @JoinColumn(name = "specialty_id"))
@@ -75,4 +77,19 @@ public class Vet extends Person {
         getSpecialtiesInternal().add(specialty);
     }
 
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

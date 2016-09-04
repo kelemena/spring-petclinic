@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -25,6 +26,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "specialties")
-public class Specialty extends NamedEntity {
+public class Specialty extends BaseEntity {
 
+    @Column(name = "name")
+    private String name;
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }
