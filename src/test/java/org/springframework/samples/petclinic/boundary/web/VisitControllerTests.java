@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.boundary.web;
 
 import org.junit.Before;
 import org.junit.Test;

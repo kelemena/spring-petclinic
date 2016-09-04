@@ -42,7 +42,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.domain.service.ClinicService;
-import org.springframework.samples.petclinic.web.PetTypeFormatter;
+import org.springframework.samples.petclinic.boundary.web.PetTypeFormatter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -67,7 +67,7 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 @Import(MvcViewConfig.class)
 // POJOs labeled with the @Controller and @Service annotations are
 // auto-detected.
-@ComponentScan(basePackages = { "org.springframework.samples.petclinic.web" })
+@ComponentScan(basePackages = { "org.springframework.samples.petclinic.boundary.web" })
 public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired

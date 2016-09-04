@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.boundary.web;
 
 import org.assertj.core.util.Lists;
 import org.junit.Before;
