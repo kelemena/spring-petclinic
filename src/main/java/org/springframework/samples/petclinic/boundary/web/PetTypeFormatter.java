@@ -22,8 +22,8 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
-import org.springframework.samples.petclinic.domain.model.PetType;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.PetType;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 
 /**
  * Instructs Spring MVC on how to parse and print elements of type 'PetType'. Starting from Spring 3.0, Formatters have
@@ -39,12 +39,12 @@ import org.springframework.samples.petclinic.domain.service.ClinicService;
  */
 public class PetTypeFormatter implements Formatter<PetType> {
 
-    private final ClinicService clinicService;
+    private final ClientService clientService;
 
 
     @Autowired
-    public PetTypeFormatter(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public PetTypeFormatter(ClientService clientService) {
+        this.clientService = clientService;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class PetTypeFormatter implements Formatter<PetType> {
 
     @Override
     public PetType parse(String text, Locale locale) throws ParseException {
-        Collection<PetType> findPetTypes = this.clinicService.findPetTypes();
+        Collection<PetType> findPetTypes = this.clientService.findPetTypes();
         for (PetType type : findPetTypes) {
             if (type.getName().equals(text)) {
                 return type;

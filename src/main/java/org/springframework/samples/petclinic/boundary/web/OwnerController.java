@@ -21,8 +21,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.domain.model.Owner;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.Owner;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,12 +43,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
-    private final ClinicService clinicService;
+    private final ClientService clientService;
 
 
     @Autowired
-    public OwnerController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public OwnerController(ClientService clientService) {
+        this.clientService = clientService;
     }
 
     @InitBinder
@@ -68,7 +68,7 @@ public class OwnerController {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
-            this.clinicService.saveOwner(owner);
+            this.clientService.saveOwner(owner);
             return "redirect:/owners/" + owner.getId();
         }
     }
@@ -88,7 +88,7 @@ public class OwnerController {
         }
 
         // find owners by last name
-        Collection<Owner> results = this.clinicService.findOwnerByLastName(owner.getLastName());
+        Collection<Owner> results = this.clientService.findOwnerByLastName(owner.getLastName());
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");
@@ -106,7 +106,7 @@ public class OwnerController {
 
     @RequestMapping(value = "/owners/{ownerId}/edit", method = RequestMethod.GET)
     public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
-        Owner owner = this.clinicService.findOwnerById(ownerId);
+        Owner owner = this.clientService.findOwnerById(ownerId);
         model.addAttribute(owner);
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
     }
@@ -117,7 +117,7 @@ public class OwnerController {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
             owner.setId(ownerId);
-            this.clinicService.saveOwner(owner);
+            this.clientService.saveOwner(owner);
             return "redirect:/owners/{ownerId}";
         }
     }
@@ -131,7 +131,7 @@ public class OwnerController {
     @RequestMapping("/owners/{ownerId}")
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
-        mav.addObject(this.clinicService.findOwnerById(ownerId));
+        mav.addObject(this.clientService.findOwnerById(ownerId));
         return mav;
     }
 

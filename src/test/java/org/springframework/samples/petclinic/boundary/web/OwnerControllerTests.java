@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.infrastructure.config.MvcCoreConfig;
 import org.springframework.samples.petclinic.infrastructure.config.MvcTestConfig;
-import org.springframework.samples.petclinic.domain.model.Owner;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.Owner;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -39,7 +39,7 @@ public class OwnerControllerTests {
     private OwnerController ownerController;
 
     @Autowired
-    private ClinicService clinicService;
+    private ClientService clientService;
 
     private MockMvc mockMvc;
 
@@ -56,7 +56,7 @@ public class OwnerControllerTests {
         george.setAddress("110 W. Liberty St.");
         george.setCity("Madison");
         george.setTelephone("6085551023");
-        given(this.clinicService.findOwnerById(TEST_OWNER_ID)).willReturn(george);
+        given(this.clientService.findOwnerById(TEST_OWNER_ID)).willReturn(george);
 
     }
 
@@ -104,7 +104,7 @@ public class OwnerControllerTests {
 
     @Test
     public void testProcessFindFormSuccess() throws Exception {
-        given(this.clinicService.findOwnerByLastName("")).willReturn(Lists.newArrayList(george, new Owner()));
+        given(this.clientService.findOwnerByLastName("")).willReturn(Lists.newArrayList(george, new Owner()));
 
         mockMvc.perform(get("/owners"))
             .andExpect(status().isOk())
@@ -113,7 +113,7 @@ public class OwnerControllerTests {
 
     @Test
     public void testProcessFindFormByLastName() throws Exception {
-        given(this.clinicService.findOwnerByLastName(george.getLastName())).willReturn(Lists.newArrayList(george));
+        given(this.clientService.findOwnerByLastName(george.getLastName())).willReturn(Lists.newArrayList(george));
 
         mockMvc.perform(get("/owners")
             .param("lastName", "Franklin")

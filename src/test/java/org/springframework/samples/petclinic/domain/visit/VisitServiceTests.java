@@ -18,8 +18,8 @@ package org.springframework.samples.petclinic.domain.visit;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.domain.model.Pet;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.Pet;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.samples.petclinic.infrastructure.config.BusinessConfig;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -34,7 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class VisitServiceTests {
 
     @Autowired
-    private ClinicService clinicService;
+    private ClientService clientService;
 
     @Autowired
     private VisitService visitService;
@@ -42,15 +42,15 @@ public class VisitServiceTests {
     @Test
     @Transactional
     public void shouldAddNewVisitForPet() {
-        Pet pet7 = this.clinicService.findPetById(7);
+        Pet pet7 = this.clientService.findPetById(7);
         int found = pet7.getVisits().size();
         Visit visit = new Visit();
         pet7.addVisit(visit);
         visit.setDescription("test");
         this.visitService.saveVisit(visit);
-        this.clinicService.savePet(pet7);
+        this.clientService.savePet(pet7);
 
-        pet7 = this.clinicService.findPetById(7);
+        pet7 = this.clientService.findPetById(7);
         assertThat(pet7.getVisits().size()).isEqualTo(found + 1);
         assertThat(visit.getId()).isNotNull();
     }

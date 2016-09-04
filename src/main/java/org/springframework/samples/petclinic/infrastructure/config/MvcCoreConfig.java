@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.samples.petclinic.boundary.web.PetTypeFormatter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -71,7 +71,7 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
-	private ClinicService clinicService;
+	private ClientService clientService;
 
 	@Override
 	public void configureContentNegotiation(
@@ -96,7 +96,7 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public PetTypeFormatter petTypeFormatter() {
-		return new PetTypeFormatter(clinicService);
+		return new PetTypeFormatter(clientService);
 	}
 
 	@Override

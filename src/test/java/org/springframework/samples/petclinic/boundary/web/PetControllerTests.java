@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.samples.petclinic.infrastructure.config.MvcCoreConfig;
 import org.springframework.samples.petclinic.infrastructure.config.MvcTestConfig;
-import org.springframework.samples.petclinic.domain.model.Owner;
-import org.springframework.samples.petclinic.domain.model.Pet;
-import org.springframework.samples.petclinic.domain.model.PetType;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.Owner;
+import org.springframework.samples.petclinic.domain.client.Pet;
+import org.springframework.samples.petclinic.domain.client.PetType;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -44,7 +44,7 @@ public class PetControllerTests {
     private PetTypeFormatter petTypeFormatter;
 
     @Autowired
-    private ClinicService clinicService;
+    private ClientService clientService;
 
     private MockMvc mockMvc;
 
@@ -60,9 +60,9 @@ public class PetControllerTests {
         PetType cat = new PetType();
         cat.setId(3);
         cat.setName("hamster");
-        given(this.clinicService.findPetTypes()).willReturn(Lists.newArrayList(cat));
-        given(this.clinicService.findOwnerById(TEST_OWNER_ID)).willReturn(new Owner());
-        given(this.clinicService.findPetById(TEST_PET_ID)).willReturn(new Pet());
+        given(this.clientService.findPetTypes()).willReturn(Lists.newArrayList(cat));
+        given(this.clientService.findOwnerById(TEST_OWNER_ID)).willReturn(new Owner());
+        given(this.clientService.findPetById(TEST_PET_ID)).willReturn(new Pet());
     }
 
     @Test

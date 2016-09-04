@@ -15,7 +15,7 @@
  */
 package org.springframework.samples.petclinic.boundary.web;
 
-import org.springframework.samples.petclinic.domain.model.Pet;
+import org.springframework.samples.petclinic.domain.client.Pet;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

@@ -3,7 +3,7 @@ package org.springframework.samples.petclinic.infrastructure.config;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.samples.petclinic.domain.vet.VetService;
 import org.springframework.samples.petclinic.domain.visit.VisitService;
 
@@ -11,8 +11,8 @@ import org.springframework.samples.petclinic.domain.visit.VisitService;
 public class MvcTestConfig {
 
     @Bean
-    public ClinicService clinicService() {
-        return Mockito.mock(ClinicService.class);
+    public ClientService clinicService() {
+        return Mockito.mock(ClientService.class);
     }
 
     @Bean

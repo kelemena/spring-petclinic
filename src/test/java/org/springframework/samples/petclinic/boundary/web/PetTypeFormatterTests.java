@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.samples.petclinic.domain.model.PetType;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.PetType;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 
 import java.text.ParseException;
 import java.util.*;
@@ -23,13 +23,13 @@ import static org.junit.Assert.assertEquals;
 public class PetTypeFormatterTests {
 
     @Mock
-    private ClinicService clinicService;
+    private ClientService clientService;
 
     private PetTypeFormatter petTypeFormatter;
 
     @Before
     public void setup() {
-        petTypeFormatter = new PetTypeFormatter(clinicService);
+        petTypeFormatter = new PetTypeFormatter(clientService);
     }
 
     @Test
@@ -42,14 +42,14 @@ public class PetTypeFormatterTests {
 
     @Test
     public void shouldParse() throws ParseException {
-        Mockito.when(clinicService.findPetTypes()).thenReturn(makePetTypes());
+        Mockito.when(clientService.findPetTypes()).thenReturn(makePetTypes());
         PetType petType = petTypeFormatter.parse("Bird", Locale.ENGLISH);
         assertEquals("Bird", petType.getName());
     }
 
     @Test(expected = ParseException.class)
     public void shouldThrowParseException() throws ParseException {
-        Mockito.when(clinicService.findPetTypes()).thenReturn(makePetTypes());
+        Mockito.when(clientService.findPetTypes()).thenReturn(makePetTypes());
         petTypeFormatter.parse("Fish", Locale.ENGLISH);
     }
 

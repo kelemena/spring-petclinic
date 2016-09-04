@@ -4,11 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.domain.visit.VisitService;
 import org.springframework.samples.petclinic.infrastructure.config.MvcCoreConfig;
 import org.springframework.samples.petclinic.infrastructure.config.MvcTestConfig;
-import org.springframework.samples.petclinic.domain.model.Pet;
-import org.springframework.samples.petclinic.domain.service.ClinicService;
+import org.springframework.samples.petclinic.domain.client.Pet;
+import org.springframework.samples.petclinic.domain.client.ClientService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -37,7 +36,7 @@ public class VisitControllerTests {
     private VisitController visitController;
 
     @Autowired
-    private ClinicService clinicService;
+    private ClientService clientService;
 
     private MockMvc mockMvc;
 
@@ -45,7 +44,7 @@ public class VisitControllerTests {
     public void setup() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(visitController).build();
 
-        given(this.clinicService.findPetById(TEST_PET_ID)).willReturn(new Pet());
+        given(this.clientService.findPetById(TEST_PET_ID)).willReturn(new Pet());
     }
 
     @Test
